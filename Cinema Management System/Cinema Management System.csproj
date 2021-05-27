@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A3977F8-4618-4B76-B4AF-14D896127B2B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Cinema_Management_System</RootNamespace>
+    <AssemblyName>Cinema Management System</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Models\Accounts\AdminAccount.cs" />
+    <Compile Include="Models\Accounts\UserAccount.cs" />
+    <Compile Include="Models\Cinema\BuyMovies.cs" />
+    <Compile Include="Models\Cinema\Chair.cs" />
+    <Compile Include="Models\Cinema\Cinema.cs" />
+    <Compile Include="Models\Cinema\PrepareTicket.cs" />
+    <Compile Include="Models\MovieList.cs" />
+    <Compile Include="Repository\Repo_Cinema.cs" />
+    <Compile Include="ViewModels\AdminPanel_UCViewModel.cs" />
+    <Compile Include="ViewModels\BuyTicket_UCViewModel.cs" />
+    <Compile Include="ViewModels\CreateCinema_UCViewModel.cs" />
+    <Compile Include="ViewModels\GetMovies_UCViewModel.cs" />
+    <Compile Include="ViewModels\Sell Activities_UCViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel_UCViewModel.cs" />
+    <Compile Include="Views\UserControls\AdminPanel_UC.xaml.cs">
+      <DependentUpon>AdminPanel_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\BuyTicket_UC.xaml.cs">
+      <DependentUpon>BuyTicket_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\CreateCinema_UC.xaml.cs">
+      <DependentUpon>CreateCinema_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\GetMovies_UC.xaml.cs">
+      <DependentUpon>GetMovies_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Sell Activities_UC.xaml.cs">
+      <DependentUpon>Sell Activities_UC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UserPanel_UC.xaml.cs">
+      <DependentUpon>UserPanel_UC.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dictionaries\AdminPanelDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\ButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\ComboboxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\ListboxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\MenuDictionaryinControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\StartWindows_Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ControlPanelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\ImagesforCover.cs" />
+    <Compile Include="Models\MoviesfromOMDbAPI.cs" />
+    <Compile Include="Repository\Repo_CovertPhoto.cs" />
+    <Compile Include="ViewModels\ControlPanelViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModel.cs" />
+    <Compile Include="Views\ControlPanelWindow.xaml.cs">
+      <DependentUpon>ControlPanelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\UserControls\AdminPanel_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\BuyTicket_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\CreateCinema_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\GetMovies_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Sell Activities_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UserPanel_UC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\Cooper Black.ttf" />
+    <Resource Include="Fonts\Bodoni MT Bold.ttf" />
+    <Resource Include="Fonts\Arial Bold.ttf" />
+    <Resource Include="Fonts\Symbols1-M2YY.ttf" />
+    <Resource Include="Fonts\Geotype.TTF" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Images\Logo\Admin.png" />
+    <Resource Include="Images\Logo\Admin2.png" />
+    <Resource Include="Images\Logo\Cinema Logo.png" />
+    <Resource Include="Images\Logo\CMS word.png" />
+    <Resource Include="Images\Logo\CMS word2.png" />
+    <Resource Include="Images\Logo\CMS word3.png" />
+    <Resource Include="Images\Logo\CMS.png" />
+    <Resource Include="Images\Logo\No Image.png" />
+    <Resource Include="Images\Logo\User.png" />
+    <Resource Include="Images\Logo\User2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="cef.redist.x64">
+      <Version>90.6.5</Version>
+    </PackageReference>
+    <PackageReference Include="cef.redist.x86">
+      <Version>90.6.5</Version>
+    </PackageReference>
+    <PackageReference Include="CefSharp.Common">
+      <Version>90.6.50</Version>
+    </PackageReference>
+    <PackageReference Include="CefSharp.Wpf">
+      <Version>90.6.50</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Apis">
+      <Version>1.51.0</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Apis.Auth">
+      <Version>1.51.0</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Apis.Core">
+      <Version>1.51.0</Version>
+    </PackageReference>
+    <PackageReference Include="Google.Apis.YouTube.v3">
+      <Version>1.51.0.2294</Version>
+    </PackageReference>
+    <PackageReference Include="iTextSharp">
+      <Version>5.5.13.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Office.Interop.Word">
+      <Version>15.0.4797.1003</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Windows.Interactivity.WPF">
+      <Version>2.0.20525</Version>
+    </PackageReference>
+    <PackageReference Include="ToastNotifications">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="ToastNotifications.Messages">
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="WpfAnimatedGif">
+      <Version>2.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cover Images\c1.jpg" />
+    <Resource Include="Images\Cover Images\c2.jpg" />
+    <Resource Include="Images\Cover Images\c3.jpg" />
+    <Resource Include="Images\Cover Images\c4.jpg" />
+    <Resource Include="Images\Cover Images\cover1.jpg" />
+    <Resource Include="Images\Cover Images\cover2.jpg" />
+    <Resource Include="Images\Cover Images\m1.jpg" />
+    <Resource Include="Images\Cover Images\m2.jpg" />
+    <Resource Include="Images\Cover Images\m3.jpg" />
+    <Resource Include="Images\Cover Images\m4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cover Images\gif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo\Empty Star.png" />
+    <Resource Include="Images\Logo\Reload.png" />
+    <Resource Include="Images\Logo\Star.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

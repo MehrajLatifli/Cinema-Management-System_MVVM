@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <SolidColorBrush x:Key="ListboxSearchBorderBrushColor">#FF25BFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxSearchForegroundColor">#FF25BFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxBackroundColor">Transparent</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxBorderBackroundColor">White</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxBorderBrushColor">#FF25BFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxLabelBackroundColor">#FF25BFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="ListboxTextBlockForegroundColor">#FF25BFBF</SolidColorBrush>
+    <sys:Double x:Key="ListboxTextBlockFontSize" >14</sys:Double>
+</ResourceDictionary>

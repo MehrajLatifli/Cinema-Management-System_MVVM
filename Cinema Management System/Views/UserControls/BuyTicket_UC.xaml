@@ -1,0 +1,432 @@
+﻿<UserControl x:Class="Cinema_Management_System.Views.UserControls.BuyTicket_UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cinema_Management_System.Views.UserControls" xmlns:ie="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:wpfAddBrowser="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+             mc:Ignorable="d" 
+                xmlns:viewmodel="clr-namespace:Cinema_Management_System.ViewModels"
+                xmlns:views="clr-namespace:Cinema_Management_System.Views.UserControls"
+             d:DesignHeight="1000" d:DesignWidth="1000" x:Name="BuyTicket">
+
+
+    
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="22*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="SearchTextbox" Grid.Row="0"  BorderThickness="5" BorderBrush="{StaticResource ResourceKey=ListboxSearchBorderBrushColor}" Foreground="{StaticResource ResourceKey=ListboxSearchForegroundColor}" FontWeight="Bold" IsUndoEnabled="False" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" FontSize="25" Padding="5" MaxLength="20" MaxLines="20" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" >
+                <ie:Interaction.Triggers>
+                    <ie:EventTrigger EventName="TextChanged">
+                        <ie:InvokeCommandAction Command="{Binding SearchTextChangedCommand}"  />
+                    </ie:EventTrigger>
+                </ie:Interaction.Triggers>
+            </TextBox>
+
+            <ListBox Grid.Row="1" x:Name="listbox1" ItemsSource="{Binding PrepareTicket_List}" Background="{StaticResource ResourceKey=ListboxBackroundColor}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"  >
+
+                <ie:Interaction.Triggers>
+                    <ie:EventTrigger EventName="SelectionChanged">
+                        <ie:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}"  CommandParameter="{Binding ElementName=listbox1, Path=SelectedItem}"/>
+                    </ie:EventTrigger>
+                </ie:Interaction.Triggers>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate x:Name="it">
+
+                        <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" />
+
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="4*"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0"  Background="{StaticResource ListboxBorderBackroundColor}" BorderBrush="{StaticResource ListboxBorderBrushColor}" BorderThickness="5"  Margin="80,20,80,20"  Width="500" Height="350">
+
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="15*"/>
+
+                                    </Grid.RowDefinitions>
+
+
+                                    <Grid Grid.Row="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Grid.Column="0" Margin="10,12,10,10"  Source="{Binding Poster}"/>
+
+                                            <RichTextBox Grid.Column="1" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Margin="10,10,10,10" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                                <RichTextBox.Document>
+                                                    <FlowDocument>
+                                                        <Paragraph>
+                                                            <Run Text="{Binding Plot}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </RichTextBox.Document>
+                                            </RichTextBox>
+
+
+                                        </Grid>
+                                    </Grid>
+
+                                    <StackPanel Grid.Row="1">
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Grid Grid.Column="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBox x:Name="MovieNameText" Grid.Row="0" Text="{Binding Title}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                <TextBox  x:Name="MovieimdbRatingText" Grid.Row="1" Text="{Binding imdbRating}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                <TextBox  x:Name="MovieYearText"  Grid.Row="2" Text="{Binding Year}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                <TextBox  x:Name="MovieGenreText"  Grid.Row="3" Text="{Binding Genre}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+
+                                            </Grid>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBox x:Name="HallText" Grid.Row="0" Text="{Binding Hall}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                <Border Grid.Row="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="2*"/>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            <ColumnDefinition Width="2*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="0" Content="Price" FontSize="15" VerticalContentAlignment="Center" Foreground="#FF25BFBF" FontWeight="Bold"/>
+                                                       <TextBox  x:Name="PriceText" Grid.Column="1" Text="{Binding Price}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold" Width="100" Height="20" Margin="5,5,0,5" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                    </Grid>
+                                                </Border>
+                                                <TextBox  x:Name="DirectorText"  Grid.Row="2"   Text="{Binding Director}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}" FontWeight="Bold"  Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True"/>
+                                                <TextBox  x:Name="AwardsText"  Grid.Row="3"  Text="{Binding Awards}" FontSize="{StaticResource ListboxTextBlockFontSize}" Foreground="{StaticResource ListboxTextBlockForegroundColor}"  FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsReadOnly="True" />
+
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+
+
+                                </Grid>
+
+
+
+                            </Border>
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+               
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <ToggleButton x:Name="ChairButton1" Grid.Row="0" Grid.Column="0" Content="1" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton2" Grid.Row="0" Grid.Column="1" Content="2" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"   >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton3" Grid.Row="0" Grid.Column="2" Content="3" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton4" Grid.Row="0" Grid.Column="3" Content="4" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"   >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton5" Grid.Row="0" Grid.Column="4" Content="5" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton6" Grid.Row="1" Grid.Column="0" Content="6" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton7" Grid.Row="1" Grid.Column="1" Content="7" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue" >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton8" Grid.Row="1" Grid.Column="2" Content="8" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton9" Grid.Row="1" Grid.Column="3" Content="9" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue"  >
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton10" Grid.Row="1" Grid.Column="4" Content="10" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton11" Grid.Row="2" Grid.Column="0" Content="11" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton12" Grid.Row="2" Grid.Column="1" Content="12" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton13" Grid.Row="2" Grid.Column="2" Content="13" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton14" Grid.Row="2" Grid.Column="3" Content="14" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton15" Grid.Row="2" Grid.Column="4" Content="15" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton16" Grid.Row="3" Grid.Column="0" Content="16" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton17" Grid.Row="3" Grid.Column="1" Content="17" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton18" Grid.Row="3" Grid.Column="2" Content="18" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton19" Grid.Row="3" Grid.Column="3" Content="19" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+                        <ToggleButton x:Name="ChairButton20" Grid.Row="3" Grid.Column="4" Content="20" FontSize="15" Margin="5,5,5,5" Background="DeepSkyBlue">
+                            <ie:Interaction.Triggers>
+                                <ie:EventTrigger EventName="Unchecked">
+                                    <ie:InvokeCommandAction Command="{Binding UnCheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                                <ie:EventTrigger EventName="Checked">
+                                    <ie:InvokeCommandAction Command="{Binding CheckedChairCommand}"/>
+                                </ie:EventTrigger>
+                            </ie:Interaction.Triggers>
+                        </ToggleButton>
+
+                    </Grid>
+                    
+                    <Button x:Name="BuyButton" Grid.Row="1" Content="Buy Ticket" FontSize="20" Margin="5,5,5,5"  Style="{StaticResource Button}" Command="{Binding BuyTicketCommand}"></Button>
+                </Grid>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"></RowDefinition>
+                        <RowDefinition Height="4*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" x:Name="Stackyoutubewb" Height="2150" Margin="4,0,3,0">
+                        <wpfAddBrowser:ChromiumWebBrowser x:Name="ChromiumBrowser" Height="150"></wpfAddBrowser:ChromiumWebBrowser>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Image x:Name="Image_S1" Grid.Column="0" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Empty Star.png" MouseDown="Image_S1_MouseDown" />
+                        <Image x:Name="Image_S2" Grid.Column="1" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Empty Star.png" MouseDown="Image_S2_MouseDown" />
+                        <Image x:Name="Image_S3" Grid.Column="2" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Empty Star.png" MouseDown="Image_S3_MouseDown" />
+                        <Image x:Name="Image_S4" Grid.Column="3" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Empty Star.png" MouseDown="Image_S4_MouseDown" />
+                        <Image x:Name="Image_S5" Grid.Column="4" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Empty Star.png" MouseDown="Image_S5_MouseDown" />
+                        <Image x:Name="Image_R" Grid.Column="5" Height="40" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="40" Source="/Cinema Management System;component/Images/Logo/Reload.png" MouseDown="Image_R_MouseDown" />
+
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+</UserControl>

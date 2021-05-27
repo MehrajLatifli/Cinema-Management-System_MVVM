@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <SolidColorBrush x:Key="MenuBackroundColor">#FF25BFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuForeGroundColor" Color="White"></SolidColorBrush>
+    <SolidColorBrush x:Key="MenuBorderColor" Color="White"></SolidColorBrush>
+    <sys:Double x:Key="MenuFontSize" >25</sys:Double>
+
+    <Style x:Key="BodoniMTBoldFont">
+        <Setter Property="TextElement.FontFamily" Value="/Fonts/#Bodoni MT Bold"></Setter>
+        <Setter Property="TextElement.FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="MenuBackroundColor2" Color="Red"></SolidColorBrush>
+    <SolidColorBrush x:Key="MenuBackroundColor3" Color="Purple"></SolidColorBrush>
+
+
+</ResourceDictionary>

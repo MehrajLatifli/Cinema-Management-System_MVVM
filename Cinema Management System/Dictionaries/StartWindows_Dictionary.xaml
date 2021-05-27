@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <SolidColorBrush x:Key="ProgressBarForeGroundColor">#FF25BFBF</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="StartViewFontColor">#FF25BFBF</SolidColorBrush>
+    
+    <sys:Double x:Key="StartViewFontSize">35</sys:Double>
+    
+    <SolidColorBrush x:Key="ProgressBarBackGroundColor" Color="White"></SolidColorBrush>
+    
+    <Style x:Key="CooperBlackFont">
+        <Setter Property="TextElement.FontFamily" Value="/Fonts/#Cooper Black"></Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="StartFontForeGroundColor">#FF25BFBF</SolidColorBrush>
+
+</ResourceDictionary>

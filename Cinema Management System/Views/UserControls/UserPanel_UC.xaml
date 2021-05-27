@@ -1,0 +1,133 @@
+﻿<UserControl x:Class="Cinema_Management_System.Views.UserControls.UserPanel_UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cinema_Management_System.Views.UserControls"
+             mc:Ignorable="d" 
+               xmlns:viewmodel="clr-namespace:Cinema_Management_System.ViewModels"
+                xmlns:views="clr-namespace:Cinema_Management_System.Views.UserControls"
+                   d:DesignHeight="1000" d:DesignWidth="1000" Name="UserPanel">
+
+    <UserControl.DataContext>
+        <viewmodel:UserPanel_UCViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Name="GetMovies_UCViewTemplate" DataType="{x:Type viewmodel:BuyTicket_UCViewModel}">
+            <views:BuyTicket_UC/>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid x:Name="Grid_User">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="0.05*"></RowDefinition>
+
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" x:Name="Grid_SingIn">
+            <Grid.RowDefinitions>
+
+
+                <RowDefinition Height="0.4*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+                <RowDefinition Height="0.4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="Username" Grid.Row="0" Height="50" Width="450" Text="Username" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" Focusable="True" Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Username_MouseEnter" MouseLeave="Username_MouseLeave" />
+            <Border Grid.Row="1" x:Name="Border_PasswordSingIN" >
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5.6*"></ColumnDefinition>
+                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                        <ColumnDefinition Width="12*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="PasswordLabel2" Grid.Column="1" Content="Password:" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" HorizontalAlignment="Right"   VerticalAlignment="Center" Height="32" Width="112" HorizontalContentAlignment="Center" Margin="0,18,0,17" />
+
+                    <PasswordBox x:Name="Password" Grid.Column="2" Height="50" Width="320" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"  Focusable="True" Padding="5,0,0,0" MaxLength="20"  ></PasswordBox>
+
+                </Grid>
+
+            </Border>
+            <Button  x:Name="SingIn" Grid.Row="2" Width="450" Height="50" Style="{StaticResource AdminPanelButton}" Content="Sing In" VerticalAlignment="Center" HorizontalAlignment="Right"  Command="{Binding UserSingInCommand}" ></Button>
+            <Image x:Name="ProfileImage" Source="/Cinema Management System;component/Images/Logo/User.png" Stretch="Fill" Width="200" Height="200" Grid.RowSpan="3" Margin="20,0,480,10"/>
+            <Grid Grid.Row="3" x:Name="Grid_BuyMovies">
+                <Grid>
+
+
+
+                    <Button  x:Name="BuyTicketButton" Width="450" Height="42" Style="{StaticResource AdminPanelButton}" FontSize="20" Content="Buy Ticket" VerticalAlignment="Center" HorizontalAlignment="Center"  Command="{Binding GotoBuyMovies}" Margin="0,0,10,5" Visibility="Hidden" />
+                    <!--<Button Grid.Column="2" x:Name="BuyList" Width="200" Height="42" Style="{StaticResource AdminPanelButton}" FontSize="20" Content="Buy list" VerticalAlignment="Center" HorizontalAlignment="Center"  Command="{Binding }" Margin="0,0,10,5" Visibility="Hidden" />-->
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1"  x:Name="Grid_SingUp">
+            <Grid.RowDefinitions>
+
+
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+   
+            <TextBox x:Name="Name" Grid.Row="0" Height="50" Width="700" Text="Name" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" Focusable="True" Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Name_MouseEnter" MouseLeave="Name_MouseLeave" />
+            <TextBox x:Name="Surname" Grid.Row="1" Height="50" Width="700" Text="Surname" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" Focusable="True" Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Surname_MouseEnter" MouseLeave="Surname_MouseLeave" />
+            <TextBox x:Name="Username2" Grid.Row="2" Height="50" Width="700" Text="Username" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" Focusable="True" Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Username2_MouseEnter" MouseLeave="Username2_MouseLeave" />
+            <Border Grid.Row="3" x:Name="Border_Password">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5.6*"></ColumnDefinition>
+                        <ColumnDefinition Width="14*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="PasswordLabel" Grid.Column="0" Content="Password:" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" HorizontalAlignment="Left"   VerticalAlignment="Center" Height="32" Width="112" HorizontalContentAlignment="Center" Margin="0,18,0,17" />
+
+                    <PasswordBox x:Name="Password2" Grid.Column="1" Height="50" Width="500" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Focusable="True" Padding="5,0,0,0" MaxLength="20" ></PasswordBox>
+
+                </Grid>
+
+            </Border>
+
+            <Border Grid.Row="4" x:Name="Border_ConfirmPassword">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5.6*"></ColumnDefinition>
+                        <ColumnDefinition Width="14*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <PasswordBox x:Name="ConfirmPassword" Grid.Column="1" Height="50" Width="500" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center"  Focusable="True" Padding="5,0,0,0" MaxLength="20" ></PasswordBox>
+
+                    <Label x:Name="ConfirmPasswordLabel" Grid.Column="0" Content="Confirm Password:" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" HorizontalAlignment="Left"  Margin="1,17,0,17" VerticalAlignment="Center" Height="32" Width="195" HorizontalContentAlignment="Center"/>
+                </Grid>
+
+            </Border>
+            <TextBox x:Name="Email" Grid.Row="5" Height="50" Width="700" Text="Email" Foreground="{StaticResource AdminPanelForeGroundColor}" BorderBrush="{StaticResource AdminPanelBorderColor}" FontSize="{StaticResource AdminPanelFontSize}" Style="{StaticResource ArialBold}" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" Focusable="True" Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Email_MouseEnter" MouseLeave="Email_MouseLeave" />
+
+            <Button  x:Name="SingUp" Grid.Row="6" Content="Sing Up" Width="700" Style="{StaticResource AdminPanelButton}" Command="{Binding UserSingUpCommand}" Margin="0,15,0,0"></Button>
+          
+        </Grid>
+
+      
+    </Grid>
+        <ContentControl x:Name="Ccontrol1" Visibility="Hidden" Content="{Binding SelectedViewModel}" Width="700" Height="750"></ContentControl>
+    </Grid>
+
+
+</UserControl>
